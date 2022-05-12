@@ -34,7 +34,7 @@ class App extends Component {
   //'componentWillMount' deprecata
   componentDidMount() {
     this.callAPI();
-    this.sendData();
+    //this.sendData();
   }
   /*
   <p className="App-intro">{this.state.apiResponse}</p>
@@ -42,12 +42,20 @@ class App extends Component {
   con il testo che abbiamo recuperato dall'API.
   */
   render() {
+    //            <button onClick={() => this.callAPI()}>Call API</button>
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p> Edit <code>src/App.js</code> and save to reload. </p>
           <p className="App-intro"> {this.state.apiResponse} </p>
+
+          {/* il form funziona però ti ridirezziona alla pagina */}
+          <form action="http://localhost:9000/testPOST" method="post">
+            <input type="text" placeholder="Enter your id" name="id" />
+            <input type="text" placeholder="Enter your name" name="name"/>
+            <button type="submit">Submit</button>
+          </form>
         </header>
       </div>
     );
