@@ -1,0 +1,1 @@
+SET DEBUG=api:* & npm start
