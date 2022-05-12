@@ -1,0 +1,21 @@
+.card {
+  width: 20vw;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px !important;
+  margin-left: 1.5vw;
+  margin-top: 2vw;
+}
+.card-img {
+  max-width: 12vw;
+}
+.btn-compra{
+    margin-right: 1vw;
+    background-color: #bce065 !important;
+    border: #7e993e !important;
+}
+.btn-compra,
+.btn-carrello {
+  width: 5vw !important;
+  border-radius: 12px !important;
+}
