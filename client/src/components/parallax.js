@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
 import '../style/parallax.css';
+import dolcetto from '../images/gelatina-colorata.png';
 
 class ParallaxSection extends Component {
     render() {
@@ -30,7 +31,16 @@ class ParallaxSection extends Component {
                             alignItems: 'center',
                             color: 'white',
                         }}>
-                        <p className="parallax-P">Scopri i nostri prodotti</p>
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="col-10">
+                                    <p className="parallax-P parallax-new">Scopri i nostri prodotti</p>
+                                </div>
+                                <div className="col-2">
+                                    <img src={dolcetto} className="dolcetto-img" alt="dolcetto" />
+                                </div>
+                            </div>
+                        </div>
                     </ParallaxLayer>
                 </Parallax>
             </>

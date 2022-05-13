@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+
 import '../style/navbar.css';
 
 import logo from '../images/logo_CANDY_MARKET.png';
@@ -10,20 +12,20 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-dark sticky-top">
         <div className="container-fluid">
-          <span className="navbar-brand mb-0 h1">
+          <Link to="/" className="navbar-brand mb-0 h1">
             <img src={logo} alt="..." className="nav-logo" />
-          </span>
-          <div class="navbar-nav">
+          </Link>
+          <div className="navbar-nav">
             <div className="row">
               <div className="col">
-                <a class="nav-link" href="" style={{ color: 'black' }}>
+                <Link to="/shops" className="nav-link" style={{ color: 'black' }}>
                   <img src={shopBag} alt="..." className="nav-shop" />
-                </a>
+                </Link>
               </div>
               <div className="col">
-                <a class="nav-link" href="" style={{ color: 'black' }}>
+                <Link to="/user" className="nav-link" style={{ color: 'black' }}>
                   <img src={user} alt="..." className="nav-usr" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

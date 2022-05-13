@@ -1,3 +1,13 @@
-.parallax-P{
-    font-size: 4vw;
+.parallax-P {
+  font-size: 5vw;
+}
+.parallax-new {
+  padding-top: 18vh;
+  padding-left: 16vw;
+}
+.dolcetto-img {
+  width: 30vw !important;
+  height: auto;
+  z-index: -1;
+  margin-left: -20vw;
 }

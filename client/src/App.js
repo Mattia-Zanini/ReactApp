@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Switch è stato sostituito da Routes
+
+import Shops from './pages/shops';
+import User from './pages/user';
+
 import './App.css';
 import './style/scrollBar.css';
 
@@ -11,10 +16,16 @@ class App extends Component {
   render() {
     return (
       <>
-        <Navbar />
-        <div className="App container-fluid">
-          <ParallaxSection />
-        </div>
+        <BrowserRouter>
+          <Navbar />
+          <div className="App container-fluid">
+            <Routes>
+              <Route exact path="/" element={<ParallaxSection />} />
+              <Route exact path="/shops" element={<Shops />} />
+              <Route exact path="/user" element={<User />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
       </>
     );
   }
