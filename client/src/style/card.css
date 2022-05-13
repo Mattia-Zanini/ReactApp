@@ -5,14 +5,15 @@
   border-radius: 15px !important;
   margin-left: 1.5vw;
   margin-top: 2vw;
+  background-color: #f1edf4 !important;
 }
 .card-img {
   max-width: 12vw;
 }
-.btn-compra{
-    margin-right: 1vw;
-    background-color: #bce065 !important;
-    border: #7e993e !important;
+.btn-compra {
+  margin-right: 1vw;
+  background-color: #bce065 !important;
+  border: #7e993e !important;
 }
 .btn-compra,
 .btn-carrello {

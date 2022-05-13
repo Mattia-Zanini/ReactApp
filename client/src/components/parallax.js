@@ -9,7 +9,7 @@ class ParallaxSection extends Component {
                     offset={0}
                     speed={2.5}
                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <p>Scroll down</p>
+                    <p>Candy Market</p>
                 </ParallaxLayer>
 
                 <ParallaxLayer offset={1} speed={2} style={{ backgroundColor: '#ff6d6d' }} />
@@ -23,7 +23,7 @@ class ParallaxSection extends Component {
                         alignItems: 'center',
                         color: 'white',
                     }}>
-                    <p>Scroll up</p>
+                    <p>Scopri i nostri prodotti</p>
                 </ParallaxLayer>
             </Parallax>
         );

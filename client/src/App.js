@@ -4,7 +4,8 @@ import './style/scrollBar.css';
 
 import Navbar from './components/navbar';
 import ItemList from './components/itemList';
-//import ParallaxSection from './components/parallax';
+import Carousel from './components/carousel';
+import ParallaxSection from './components/parallax';
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
       <>
         <Navbar />
         <div className="App container-fluid">
-          <ItemList />
+          <ParallaxSection />
         </div>
       </>
     );
