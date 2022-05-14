@@ -5,6 +5,9 @@
   padding-top: 18vh;
   padding-left: 16vw;
 }
+.parallax-user {
+  padding-top: 5vw;
+}
 .dolcetto-img {
   width: 30vw !important;
   height: auto;
@@ -20,4 +23,21 @@
   border-color: #bea445 !important;
   color: #ffffff !important;
   font-size: 1.3vw !important;
+}
+.btn-goUser {
+  margin-left: 19vw;
+  margin-top: 1vw !important;
+  width: 10vw !important;
+  height: auto;
+  background-color: #dfc464 !important;
+  border-color: #bea445 !important;
+  color: #ffffff !important;
+  font-size: 1.3vw !important;
+}
+.caramelle-img {
+  width: 55vw !important;
+  height: auto;
+  z-index: -1;
+  margin-left: -3.5vw;
+  margin-top: -11.7vw;
 }
