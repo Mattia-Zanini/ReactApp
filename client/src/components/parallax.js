@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+import { Link } from "react-router-dom";
 
 import '../style/parallax.css';
 import dolcetto from '../images/gelatina-colorata.png';
@@ -38,6 +39,13 @@ class ParallaxSection extends Component {
                                 </div>
                                 <div className="col-2">
                                     <img src={dolcetto} className="dolcetto-img" alt="dolcetto" />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3 offset-4">
+                                    <Link to="/shops" className="btn btn-goShop">
+                                        Vai allo shop
+                                    </Link>
                                 </div>
                             </div>
                         </div>

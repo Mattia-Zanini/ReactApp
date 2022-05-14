@@ -11,3 +11,12 @@
   z-index: -1;
   margin-left: -20vw;
 }
+.btn-goShop {
+  margin-top: -12vw;
+  /*margin-left: -5vw;*/
+  width: 10vw !important;
+  height: auto;
+  background-color: #f9d65a !important;
+  border-color: #d1b44a !important;
+  color: #ffffff !important;
+}

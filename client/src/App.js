@@ -8,7 +8,6 @@ import './App.css';
 import './style/scrollBar.css';
 
 import Navbar from './components/navbar';
-import ItemList from './components/itemList';
 import Carousel from './components/carousel';
 import ParallaxSection from './components/parallax';
 
