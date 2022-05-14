@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // Switch è stato sostituito da Routes
 
-import Shops from './pages/shops';
-import User from './pages/user';
+import Shops from './pages/Shops';
+import User from './pages/User';
 
 import './App.css';
 import './style/scrollBar.css';
@@ -10,6 +10,7 @@ import './style/scrollBar.css';
 import Navbar from './components/navbar';
 import Carousel from './components/carousel';
 import ParallaxSection from './components/parallax';
+import Footer from './components/footer';
 
 class App extends Component {
   render() {

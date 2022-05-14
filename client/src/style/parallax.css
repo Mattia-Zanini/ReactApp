@@ -12,11 +12,12 @@
   margin-left: -20vw;
 }
 .btn-goShop {
-  margin-top: -12vw;
+  margin-top: -14vw;
   /*margin-left: -5vw;*/
   width: 10vw !important;
   height: auto;
-  background-color: #f9d65a !important;
-  border-color: #d1b44a !important;
+  background-color: #dfc464 !important;
+  border-color: #bea445 !important;
   color: #ffffff !important;
+  font-size: 1.3vw !important;
 }

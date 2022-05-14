@@ -1,0 +1,10 @@
+.footer {
+  background-color: #404040;
+  color: white;
+  position: relative;
+  margin-top: 50vw;
+}
+.footer a {
+  color: white;
+  padding-right: 10px;
+}
