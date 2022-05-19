@@ -6,6 +6,9 @@ class Contact extends Component {
             <>
                 <div className="App container-fluid">
                     <h1>User Page</h1 >
+                    <div>
+
+                    </div>
                 </div>
             </>
         )
