@@ -14,19 +14,25 @@ import Footer from './components/footer';
 
 class App extends Component {
   // inizializza lo stato di default.
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
-  callAPI() {
-    fetch("http://localhost:9000/testPOST")
-      .then(res => res.json())
-      .then(res => console.log(res));
-    //.then(res => this.setState({ apiResponse: res }));
-  }
+  state = {
+    data: null
+  };
+
   componentDidMount() {
-    //this.callAPI();
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
   }
+
+  //fetching the GET route from the Express server which matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/');
+    const body = await response.json();
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
   render() {
     return (
       <>
@@ -40,6 +46,7 @@ class App extends Component {
             </Routes>
           </div>
         </BrowserRouter>
+        <p className="App-intro">{this.state.data}</p>
       </>
     );
   }

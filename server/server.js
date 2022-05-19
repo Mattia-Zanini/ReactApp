@@ -1,20 +1,41 @@
-var express = require('express');
+const express = require('express'); //Line 1
 var bodyParser = require('body-parser')
-var app = express();
-var http = require('http').Server(app);
+const app = express(); //Line 2
+const port = process.env.PORT || 5000; //Line 3
 
 app.use(express.static(__dirname)); //using a static html file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-})
+// This displays message that the server running and listening to specified port
+app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 
-app.post('/', (req, res) => {
-    res.json("POST request received");
-    console.log("POST request sent");
-})
+const usrnm = "";
+const passwd = "";
 
-var server = http.listen(9000, () => {
-    console.log('Server is running on port', server.address().port)
+// create a GET route
+app.get('/', (req, res) => { //Line 9
+    //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
+}); //Line 11
+
+app.get('/user', (req, res) => {
+    console.log("GET credentials: " + this.usrnm + " " + this.passwd);
+    if (this.usrnm === "admin" && this.passwd === "admin") {
+        console.log("ok u can go");
+        res.send({ login: true });
+    }
+    else {
+        console.log("not ok");
+        res.send({ login: false });
+    }
+    this.usrnm = "";
+    this.passwd = "";
+});
+
+app.post('/user', (req, res) => {
+    res.redirect('back');
+    console.log("POST request received");
+    console.log(req.body);
+    this.usrnm = req.body.username;
+    this.passwd = req.body.password;
 });
