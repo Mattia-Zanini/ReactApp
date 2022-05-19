@@ -1,41 +1,42 @@
-const express = require('express'); //Line 1
+const express = require('express');
 var bodyParser = require('body-parser')
-const app = express(); //Line 2
-const port = process.env.PORT || 5000; //Line 3
+const app = express();
+const port = process.env.PORT || 5000;
+const DB = require('./db.js')
+let dataBase = new DB();
 
 app.use(express.static(__dirname)); //using a static html file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//clean the console
+console.clear();
 // This displays message that the server running and listening to specified port
-app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
+app.listen(port, () => console.log(`Listening on port ${port}`));
+//initialize the database
+dataBase.Init();
 
-const usrnm = "";
-const passwd = "";
 
 // create a GET route
-app.get('/', (req, res) => { //Line 9
-    //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-}); //Line 11
-
-app.get('/user', (req, res) => {
-    console.log("GET credentials: " + this.usrnm + " " + this.passwd);
-    if (this.usrnm === "admin" && this.passwd === "admin") {
-        console.log("ok u can go");
-        res.send({ login: true });
-    }
-    else {
-        console.log("not ok");
-        res.send({ login: false });
-    }
-    this.usrnm = "";
-    this.passwd = "";
+app.get('/', (req, res) => {
+    //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
+app.get('/user', (req, res) => {
+    console.log("GET credentials: " + isValidCred);
+    res.send({ express: isValidCred, status: 200 });
+});
+
+var isValidCred = "false"; //check user credentials
 app.post('/user', (req, res) => {
     res.redirect('back');
     console.log("POST request received");
     console.log(req.body);
-    this.usrnm = req.body.username;
-    this.passwd = req.body.password;
+    if (req.body.username === "admin" && req.body.password === "admin") {
+        console.log("ok u can go");
+        isValidCred = "true";
+    }
+    else {
+        console.log("not ok");
+    }
 });

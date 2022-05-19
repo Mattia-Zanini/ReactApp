@@ -6,15 +6,13 @@ import usrLogin from '../images/uicons/userLogin.svg';
 class Contact extends Component {
     // inizializza lo stato di default.
     state = {
-        login: "nada"
+        login: ""
     };
 
     componentDidMount() {
         this.callBackendAPI()
-            .then(res => this.setState({ login: res.login }))
-            .then(res => console.log(res))
+            .then(res => this.setState({ login: res.express }))
             .catch(err => console.log(err));
-        console.log(this.state.login);
     }
 
     //fetching the GET route from the Express server which matches the GET route from server.js
@@ -31,7 +29,7 @@ class Contact extends Component {
             <>
                 <div className="App container-fluid">
                     <h1>User Page</h1 >
-                    <h1>Ciao {this.state.login}</h1 >
+                    <h1>{this.state.login}</h1 >
                     <div className="row Login">
                         <div className="col-6 offset-3">
                             <img src={usrLogin} className="userlogin-img" alt="..." />
