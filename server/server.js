@@ -2,8 +2,8 @@ const express = require('express');
 var bodyParser = require('body-parser')
 const app = express();
 const port = process.env.PORT || 5000;
-const DB = require('./db.js')
-let dataBase = new DB();
+const ZannaDB = require('./zannaDB.js')
+let dataBase = new ZannaDB();
 
 app.use(express.static(__dirname)); //using a static html file
 app.use(bodyParser.json());
@@ -15,6 +15,8 @@ console.clear();
 app.listen(port, () => console.log("Listening on port", colours.fg.red + port, colours.reset));
 //initialize the database
 dataBase.Init();
+dataBase.DeleteUser("ciao");
+console.log(dataBase.users);
 
 
 // create a GET route
