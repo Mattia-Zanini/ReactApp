@@ -13,6 +13,20 @@ import ParallaxSection from './components/parallax';
 import Footer from './components/footer';
 
 class App extends Component {
+  // inizializza lo stato di default.
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
+  }
+  callAPI() {
+    fetch("http://localhost:9000/testPOST")
+      .then(res => res.json())
+      .then(res => console.log(res));
+    //.then(res => this.setState({ apiResponse: res }));
+  }
+  componentDidMount() {
+    //this.callAPI();
+  }
   render() {
     return (
       <>

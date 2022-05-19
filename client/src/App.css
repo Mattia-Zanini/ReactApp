@@ -1,6 +1,9 @@
-.App {
-  background-color: #fcf8ff;
+body {
+  background-color: #fcf8ff !important;
 }
+
+/*.App {
+}*/
 
 .App-logo {
   height: 40vmin;
