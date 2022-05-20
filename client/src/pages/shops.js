@@ -6,7 +6,6 @@ class Blogs extends Component {
         return (
             <>
                 <div className="App container-fluid">
-                    <h1>Shop page</h1 >
                     <ItemList />
                 </div>
             </>

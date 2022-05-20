@@ -1,4 +1,10 @@
 [
-  { "usr": "Admin", "passwd": "provA" },
-  { "usr": "ciao", "passwd": "pro" }
+    {
+        "usr": "Admin",
+        "passwd": "provA"
+    },
+    {
+        "usr": "gmarck",
+        "passwd": "MaxMagilot"
+    }
 ]

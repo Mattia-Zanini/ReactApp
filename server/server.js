@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 const ZannaDB = require('./zannaDB.js')
@@ -8,6 +9,7 @@ let dataBase = new ZannaDB();
 app.use(express.static(__dirname)); //using a static html file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 //clean the console
 console.clear();
@@ -15,16 +17,25 @@ console.clear();
 app.listen(port, () => console.log("Listening on port", colours.fg.red + port, colours.reset));
 //initialize the database
 dataBase.Init();
-dataBase.DeleteUser("ciao");
-console.log(dataBase.users);
-
+//console.log(dataBase.users);
 
 // create a GET route
 app.get('/', (req, res) => {
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
+app.get('/randID', (req, res) => {
+    console.log("Sending random ID");
+    res.send({ idGenerated: dataBase.RandomID() });
+});
+
 app.get('/user', (req, res) => {
+    if (req.cookies["logged_in"] == "true") {
+        console.log("You are logged in");
+    }
+    else {
+        console.log("You are not logged in");
+    }
     console.log("GET credentials: " + isValidCred);
     res.send({ express: isValidCred, status: 200 });
 });
@@ -34,13 +45,24 @@ app.post('/user', (req, res) => {
     res.redirect('back');
     console.log("POST request received");
     console.log(req.body);
-    if (req.body.username === "admin" && req.body.password === "admin") {
-        console.log("ok u can go");
-        isValidCred = "true";
+    let user = dataBase.FindUser(req.body.username);
+    if (user.found == true) {
+        if (req.body.username === user.name && req.body.password === user.pass) {
+            console.log("User credentials are valid");
+            isValidCred = "true";
+        }
+        else {
+            console.log("User credentials are not valid");
+        }
     }
     else {
-        console.log("not ok");
+        console.log("User not founded");
     }
+});
+
+//va messo alla fine
+app.get('*', function (req, res) {
+    res.status(404).send('Erorr 404: Page not found');
 });
 
 

@@ -8,11 +8,12 @@ class ZannaDB {
     }
     Init() {
         console.log(colours.fg.green, "DB connected", colours.reset);
-        let rawData = fs.readFileSync(fileName);
-        let jsonData = JSON.parse(rawData);
-        this.users = jsonData;
+        this.users = this.ReadFileDB();
         console.log("There is", colours.fg.yellow + this.users.length, colours.reset + "users in the DB");
-        //console.log(this.users);
+    }
+    ReadFileDB() {
+        let rawData = fs.readFileSync(fileName);
+        return JSON.parse(rawData);
     }
     WriteFileDB() {
         let usersJson = JSON.stringify(this.users);
@@ -32,12 +33,13 @@ class ZannaDB {
         }
     }
     FindUser(usr) {
-        let foundUser = { found: false, position: undefined, name: undefined };
+        let foundUser = { found: false, position: undefined, name: undefined, pass: undefined };
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].usr === usr) {
                 foundUser.found = true;
                 foundUser.position = i;
                 foundUser.name = usr;
+                foundUser.pass = this.users[i].passwd;
                 break;
             }
         }
@@ -65,6 +67,14 @@ class ZannaDB {
         else {
             console.log("User not found or he doens't exist");
         }
+    }
+    RandomID() {
+        let rID = "";
+        for (let i = 0; i < 5; i++) {
+            rID += (Math.random() + 1).toString(36).substring(7);
+        }
+        console.log("random id generated: " + rID);
+        return rID;
     }
 }
 
