@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 5000;
+const Logger = require("./logger.js");
 const ZannaDB = require('./zannaDB.js')
 let dataBase = new ZannaDB();
 
@@ -14,10 +15,10 @@ app.use(cookieParser());
 //clean the console
 console.clear();
 // This displays message that the server running and listening to specified port
-app.listen(port, () => console.log("Listening on port", colours.fg.red + port, colours.reset));
+app.listen(port, () => Logger.Log("Listening on port " + colours.fg.red + port + colours.reset));
 //initialize the database
 dataBase.Init();
-//console.log(dataBase.users);
+//Logger.Log(dataBase.users);
 
 // create a GET route
 app.get('/', (req, res) => {
@@ -25,38 +26,38 @@ app.get('/', (req, res) => {
 });
 
 app.get('/randID', (req, res) => {
-    console.log("Sending random ID");
+    Logger.Log("Sending random ID");
     res.send({ idGenerated: dataBase.RandomID() });
 });
 
 app.get('/user', (req, res) => {
     if (req.cookies["logged_in"] == "true") {
-        console.log("You are logged in");
+        Logger.Log("You are logged in");
     }
     else {
-        console.log("You are not logged in");
+        Logger.Log("You are not logged in");
     }
-    console.log("GET credentials: " + isValidCred);
+    Logger.Log("GET credentials: " + isValidCred);
     res.send({ express: isValidCred, status: 200 });
 });
 
 var isValidCred = "false"; //check user credentials
 app.post('/user', (req, res) => {
     res.redirect('back');
-    console.log("POST request received");
-    console.log(req.body);
+    Logger.Log("POST request received");
+    Logger.Log(req.body);
     let user = dataBase.FindUser(req.body.username);
     if (user.found == true) {
         if (req.body.username === user.name && req.body.password === user.pass) {
-            console.log("User credentials are valid");
+            Logger.Log("User credentials are valid");
             isValidCred = "true";
         }
         else {
-            console.log("User credentials are not valid");
+            Logger.Log("User credentials are not valid");
         }
     }
     else {
-        console.log("User not founded");
+        Logger.Log("User not founded");
     }
 });
 

@@ -1,15 +1,16 @@
 // include node fs module
 var fs = require('fs');
 const fileName = './database.json';
+const Logger = require("./logger.js");
 
 class ZannaDB {
     constructor() {
         this.users = [];
     }
     Init() {
-        console.log(colours.fg.green, "DB connected", colours.reset);
+        Logger.Log(colours.fg.green + "DB connected" + colours.reset);
         this.users = this.ReadFileDB();
-        console.log("There is", colours.fg.yellow + this.users.length, colours.reset + "users in the DB");
+        Logger.Log("There is " + colours.fg.yellow + this.users.length + colours.reset + " users in the DB");
     }
     ReadFileDB() {
         let rawData = fs.readFileSync(fileName);
@@ -19,17 +20,17 @@ class ZannaDB {
         let usersJson = JSON.stringify(this.users);
         fs.writeFileSync(fileName, usersJson, function (err) {
             if (err) throw err;
-            console.log('File is created successfully.');
+            Logger.Log("File is created successfully.");
         });
     }
     AddUser(usr, passwd) {
         if (this.FindUser(usr).found === false) {
             this.users.push({ usr, passwd });
             this.WriteFileDB();
-            console.log("Added a new user");
+            Logger.Log("Added a new user");
         }
         else {
-            console.log("User already exists");
+            Logger.Log("User already exists");
         }
     }
     FindUser(usr) {
@@ -50,10 +51,10 @@ class ZannaDB {
         if (pos !== undefined) {
             this.users.splice(pos, 1);
             this.WriteFileDB();
-            console.log("Deleted a user");
+            Logger.Log("Deleted a user");
         }
         else {
-            console.log("User not found or he doens't exist");
+            Logger.Log("User not found or he doens't exist");
         }
     }
     ChangeUser(usr, passwd) {
@@ -62,10 +63,10 @@ class ZannaDB {
             this.users[pos].usr = usr;
             this.users[pos].passwd = passwd;
             this.WriteFileDB();
-            console.log("Changed a user");
+            Logger.Log("Changed a user");
         }
         else {
-            console.log("User not found or he doens't exist");
+            Logger.Log("User not found or he doens't exist");
         }
     }
     RandomID() {
@@ -73,7 +74,7 @@ class ZannaDB {
         for (let i = 0; i < 5; i++) {
             rID += (Math.random() + 1).toString(36).substring(7);
         }
-        console.log("random id generated: " + rID);
+        Logger.Log("random id generated: " + rID);
         return rID;
     }
 }
