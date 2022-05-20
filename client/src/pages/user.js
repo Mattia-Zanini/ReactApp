@@ -18,7 +18,7 @@ class Contact extends Component {
                 .catch(err => console.log(err));
         }
         this.callBackendAPI('/user')
-            .then(res => this.setState({ login: res.express }))
+            .then(res => this.setState({ login: res.credentialsValid }))
             .catch(err => console.log(err));
     }
 

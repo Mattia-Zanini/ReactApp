@@ -2,15 +2,17 @@
 var fs = require('fs');
 const fileName = './database.json';
 const Logger = require("./logger.js");
+const Color = require("./colours.js");
 
 class ZannaDB {
     constructor() {
         this.users = [];
     }
     Init() {
-        Logger.Log(colours.fg.green + "DB connected" + colours.reset);
+        Logger.Log(Color.colours.fg.green + "DB connected." + Color.colours.reset);
         this.users = this.ReadFileDB();
-        Logger.Log("There is " + colours.fg.yellow + this.users.length + colours.reset + " users in the DB");
+        Logger.Log("There is " + Color.colours.fg.yellow + this.users.length + Color.colours.reset
+            + " users registered in the DB.");
     }
     ReadFileDB() {
         let rawData = fs.readFileSync(fileName);
@@ -27,10 +29,10 @@ class ZannaDB {
         if (this.FindUser(usr).found === false) {
             this.users.push({ usr, passwd });
             this.WriteFileDB();
-            Logger.Log("Added a new user");
+            Logger.Log("Added a new user.");
         }
         else {
-            Logger.Log("User already exists");
+            Logger.Log("User already exists.");
         }
     }
     FindUser(usr) {
@@ -51,10 +53,10 @@ class ZannaDB {
         if (pos !== undefined) {
             this.users.splice(pos, 1);
             this.WriteFileDB();
-            Logger.Log("Deleted a user");
+            Logger.Log("Deleted a user.");
         }
         else {
-            Logger.Log("User not found or he doens't exist");
+            Logger.Log("User not found or he doens't exist.");
         }
     }
     ChangeUser(usr, passwd) {
@@ -63,53 +65,30 @@ class ZannaDB {
             this.users[pos].usr = usr;
             this.users[pos].passwd = passwd;
             this.WriteFileDB();
-            Logger.Log("Changed a user");
+            Logger.Log("Changed a user.");
         }
         else {
-            Logger.Log("User not found or he doens't exist");
+            Logger.Log("User not found or he doens't exist.");
         }
     }
-    RandomID() {
+    RandomID(n) {
         let rID = "";
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < n; i++) {
             rID += (Math.random() + 1).toString(36).substring(7);
         }
-        Logger.Log("random id generated: " + rID);
+        Logger.Log("Random id generated: " + rID);
         return rID;
+    }
+    GenerateUsers(n) {
+        Logger.Log("Generating users...");
+        for (let i = 0; i < n; i++) {
+            let usr = this.RandomID(1);
+            let passwd = this.RandomID(1);
+            this.users.push({ usr, passwd });
+        }
+        Logger.Log("Users generated");
+        this.WriteFileDB();
     }
 }
 
 module.exports = ZannaDB;
-
-const colours = {
-    reset: "\x1b[0m",
-    bright: "\x1b[1m",
-    dim: "\x1b[2m",
-    underscore: "\x1b[4m",
-    blink: "\x1b[5m",
-    reverse: "\x1b[7m",
-    hidden: "\x1b[8m",
-
-    fg: {
-        black: "\x1b[30m",
-        red: "\x1b[31m",
-        green: "\x1b[32m",
-        yellow: "\x1b[33m",
-        blue: "\x1b[34m",
-        magenta: "\x1b[35m",
-        cyan: "\x1b[36m",
-        white: "\x1b[37m",
-        crimson: "\x1b[38m" // Scarlet
-    },
-    bg: {
-        black: "\x1b[40m",
-        red: "\x1b[41m",
-        green: "\x1b[42m",
-        yellow: "\x1b[43m",
-        blue: "\x1b[44m",
-        magenta: "\x1b[45m",
-        cyan: "\x1b[46m",
-        white: "\x1b[47m",
-        crimson: "\x1b[48m"
-    }
-};

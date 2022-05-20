@@ -1,3 +1,5 @@
+const Color = require("./colours.js");
+
 function GetCurrentDateTime(fileNameFormat) {
     var date = new Date();
     var hour = date.getHours();
@@ -26,14 +28,17 @@ function LogFormatter(message) {
         for (let i = 0; i < array.length; i++) {
             let n = i + 1;
             if (i == 0) {
-                result = "[ " + GetCurrentDateTime(false) + " ] " + "(" + n + "/" + array.length + ") " + array[i];
+                result = Color.colours.fg.blue + "[ " + GetCurrentDateTime(false) + " ] " +
+                    Color.colours.fg.cyan + "(" + n + "/" + array.length + ") " + Color.colours.reset + array[i];
             } else {
-                result += "\n[ " + GetCurrentDateTime(false) + " ] " + "(" + n + "/" + array.length + ") " + array[i];
+                result += Color.colours.fg.blue + "\n[ " + GetCurrentDateTime(false) + " ] " +
+                    Color.colours.fg.cyan + "(" + n + "/" + array.length + ") " + Color.colours.reset + array[i];
             }
         }
         return result;
     } else {
-        return "[ " + GetCurrentDateTime(false) + " ] " + message;
+        return Color.colours.fg.blue + "[ " + GetCurrentDateTime(false) + " ] " +
+            Color.colours.reset + message;
     }
 }
 
