@@ -21,7 +21,6 @@ app.listen(port, () => Logger.Log("Listening on port " + Color.colours.fg.red + 
 //initialize the database
 dataBase.Init();
 //Logger.Log(dataBase.users);
-//
 
 // create a GET route
 app.get('/', (req, res) => {
